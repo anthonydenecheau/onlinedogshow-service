@@ -1,5 +1,7 @@
 package com.scc.onlinedogshow.model;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -13,11 +15,9 @@ public class Pedigree {
 
 	@Id
 	@Column(name = "id", nullable = false)
-	@JsonIgnore
-	private int id;
+	private long id;
 
 	@Column(name = "id_chien", nullable = false)
-	@JsonIgnore
 	private int idDog;
 
 	@Column(name = "pays")
@@ -32,8 +32,11 @@ public class Pedigree {
 	@Column(name = "date_obtention")
 	private String obtentionDate;
 
-	public int getId() { return id; }
-	public void setId(int id) { this.id = id; }
+	@Column(name = "date_maj")
+	private Timestamp timestamp;
+	
+	public long getId() { return id; }
+	public void setId(long id) { this.id = id; }
 
 	public int getIdDog() { return idDog; }
 	public void setIdDog(int idDog) { this.idDog = idDog; }
@@ -49,5 +52,22 @@ public class Pedigree {
 
 	public String getObtentionDate() { return obtentionDate; }
 	public void setObtentionDate(String obtentionDate) { this.obtentionDate = obtentionDate; }
+
+	public Timestamp getTimestamp() { return timestamp; }
+	public void setTimestamp(Timestamp timestamp) { this.timestamp = timestamp; }
+
+	public Pedigree withId(long id){ this.setId( id ); return this; }
+	public Pedigree withType(String type){ this.setType(type); return this; }
+	public Pedigree withNumber(String number){ this.setNumber(number); return this; }
+	public Pedigree withCountry(String country){ this.setCountry(country); return this; }
+	public Pedigree withObtentionDate(String obtentionDate){ this.setObtentionDate(obtentionDate); return this; }
+	public Pedigree withIdDog(int idDog){ this.setIdDog(idDog); return this; }
+	public Pedigree withTimestamp(Timestamp timestamp){ this.setTimestamp(timestamp); return this; }
+	
+	@Override
+	public String toString() {
+		return "Pedigree [id=" + id + ", idDog=" + idDog + ", country=" + country + ", type=" + type + ", number="
+				+ number + ", obtentionDate=" + obtentionDate + ", timestamp=" + timestamp + "]";
+	}
 
 }

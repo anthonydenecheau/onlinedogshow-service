@@ -1,4 +1,39 @@
+#Default port is 8081
+server:
+  port: 8081
+  
 spring:
+  cloud:
+    stream:
+      bindings:
+        inboundDogChanges:
+          destination: dogOdsTopic
+          content-type: application/json
+          group: odsGroup
+        inboundOwnerChanges:
+          destination: ownerOdsTopic
+          content-type: application/json
+          group: odsGroup
+        inboundBreederChanges:
+          destination: breederOdsTopic
+          content-type: application/json
+          group: odsGroup
+        inboundTitleChanges:
+          destination:  titleOdsTopic
+          content-type: application/json
+          group: odsGroup
+        inboundPedigreeChanges:
+          destination:  pedigreeOdsTopic
+          content-type: application/json
+          group: odsGroup
+        inboundParentChanges:
+          destination:  parentOdsTopic
+          content-type: application/json          
+          group: odsGroup
+      kafka:
+        binder:
+          zkNodes: localhost
+          brokers: localhost
   zipkin:
     baseUrl:  http://localhost:9411
 

@@ -1,9 +1,13 @@
 package com.scc.onlinedogshow.model;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "ods_chien")
@@ -57,6 +61,9 @@ public class Dog{
 
 	@Column(name = "id_lice")
 	private int idLice;
+	
+	@Column(name = "date_maj")
+	private Timestamp timestamp;
 
 	public int getId() { return id; }
 	public void setId(int id) { this.id = id; }
@@ -75,16 +82,7 @@ public class Dog{
 
 	public String getPays() { return pays; }
 	public void setPays(String pays) { this.pays = pays; }
-	/*
-	public String getNumlof() { return numlof;	}
-	public void setNumlof(String numlof) { this.numlof = numlof; }
-	
-	public String getNumconfirmation() { return numconfirmation; }
-	public void setNumconfirmation(String numconfirmation) { this.numconfirmation = numconfirmation; }
-	
-	public String getDateConfirmation() { return dateConfirmation; }
-	public void setDateConfirmation(String dateConfirmation) { this.dateConfirmation = dateConfirmation; }
-	*/
+
 	public String getTatouage() { return tatouage; }
 	public void setTatouage(String tatouage) { this.tatouage = tatouage; }
   
@@ -114,5 +112,35 @@ public class Dog{
 	
 	public int getIdLice() { return idLice; }
 	public void setIdLice(int idLice) { this.idLice = idLice; }
+	
+	public Timestamp getTimestamp() { return timestamp; }
+	public void setTimestamp(Timestamp timestamp) { this.timestamp = timestamp; }
 
+	public Dog withId(int id){ this.setId( id ); return this; }
+	public Dog withNom(String nom){ this.setNom(nom); return this; }
+	public Dog withAffixe(String affixe){ this.setAffixe(affixe); return this; }
+	public Dog withSexe(String sexe){ this.setSexe(sexe); return this; }
+	public Dog withDateNaissance(String dateNaissance){ this.setDateNaissance(dateNaissance); return this; }
+	public Dog withPays(String pays){ this.setPays(pays); return this; }
+	public Dog withTatouage(String tatouage){ this.setTatouage(tatouage); return this; }
+	public Dog withTranspondeur(String transpondeur){ this.setTranspondeur(transpondeur); return this; }
+	public Dog withCodeFci(String codeFci){ this.setCodeFci(codeFci); return this; }
+	public Dog withIdRace(int idRace){ this.setIdRace( idRace ); return this; }
+	public Dog withIdVariete(int idVariete){ this.setIdVariete( idVariete ); return this; }
+	public Dog withRace(String race){ this.setRace(race); return this; }
+	public Dog withVariete(String variete){ this.setVariete(variete); return this; }
+	public Dog withCouleur(String couleur){ this.setCouleur(couleur); return this; }
+	public Dog withIdEtalon(int idEtalon){ this.setIdEtalon( idEtalon ); return this; }
+	public Dog withIdLice(int idLice){ this.setIdLice( idLice ); return this; }
+	public Dog withTimestamp(Timestamp timestamp){ this.setTimestamp(timestamp); return this; }
+	
+	@Override
+	public String toString() {
+		return "Dog [id=" + id + ", nom=" + nom + ", affixe=" + affixe + ", sexe=" + sexe + ", dateNaissance="
+				+ dateNaissance + ", pays=" + pays + ", tatouage=" + tatouage + ", transpondeur=" + transpondeur
+				+ ", codeFci=" + codeFci + ", idRace=" + idRace + ", idVariete=" + idVariete + ", race=" + race
+				+ ", variete=" + variete + ", couleur=" + couleur + ", idEtalon=" + idEtalon + ", idLice=" + idLice
+				+ ", timestamp=" + timestamp + "]";
+	}
+	
 }

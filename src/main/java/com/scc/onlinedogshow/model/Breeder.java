@@ -1,19 +1,17 @@
 package com.scc.onlinedogshow.model;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 @Table(name = "ods_eleveur")
 public class Breeder {
 
-	@Id
-	@Column(name = "id", nullable = false)
-	@JsonIgnore
+	@Column(name = "id")
 	private int id;
 
 	@Column(name = "nom")
@@ -23,24 +21,23 @@ public class Breeder {
 	private String firstName;
 
 	@Column(name = "typ_profil")
-	@JsonIgnore
 	private String typeProfil;
 
 	@Column(name = "professionnel_actif")
-	@JsonIgnore
 	private String professionnelActif;
 
 	@Column(name = "raison_sociale")
-	@JsonIgnore
 	private String raisonSociale;
 
 	@Column(name = "on_suffixe")
-	@JsonIgnore
 	private String onSuffixe;
-
-	@Column(name = "id_chien")
-	@JsonIgnore
+	
+	@Id
+	@Column(name = "id_chien", nullable = false)
 	private int idDog;
+	
+	@Column(name = "date_maj")
+	private Timestamp timestamp;
 
 	public int getId() { return id; }
 	public void setId(int id) { this.id = id; }
@@ -66,4 +63,26 @@ public class Breeder {
 	public String getOnSuffixe() { return onSuffixe; }
 	public void setOnSuffixe(String onSuffixe) { this.onSuffixe = onSuffixe; }
 
+	public Timestamp getTimestamp() { return timestamp; }
+	public void setTimestamp(Timestamp timestamp) { this.timestamp = timestamp; }
+	
+	public Breeder withId(int id){ this.setId( id ); return this; }
+	public Breeder withFirstName(String firstName){ this.setFirstName(firstName); return this; }
+	public Breeder withLastName(String lastName){ this.setLastName(lastName); return this; }
+	public Breeder withIdDog(int idDog){ this.setIdDog(idDog); return this; }
+	public Breeder withTypeProfil(String typeProfil){ this.setTypeProfil(typeProfil); return this; }
+	public Breeder withProfessionnelActif(String professionnelActif){ this.setProfessionnelActif(professionnelActif); return this; }
+	public Breeder withRaisonSociale(String raisonSociale){ this.setRaisonSociale(raisonSociale); return this; }
+	public Breeder withOnSuffixe(String onSuffixe){ this.setOnSuffixe(onSuffixe); return this; }
+	public Breeder withTimestamp(Timestamp timestamp){ this.setTimestamp(timestamp); return this; }
+	
+	@Override
+	public String toString() {
+		return "Breeder [id=" + id + ", lastName=" + lastName + ", firstName=" + firstName + ", typeProfil="
+				+ typeProfil + ", professionnelActif=" + professionnelActif + ", raisonSociale=" + raisonSociale
+				+ ", onSuffixe=" + onSuffixe + ", idDog=" + idDog + ", timestamp=" + timestamp + "]";
+	}
+
+	
+	
 }

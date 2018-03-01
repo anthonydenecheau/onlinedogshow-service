@@ -1,11 +1,11 @@
 package com.scc.onlinedogshow.model;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "ods_titres")
@@ -13,12 +13,13 @@ public class Title {
 
 	@Id
 	@Column(name = "id", nullable = false)
-	@JsonIgnore
-	private int id;
+	private long id;
 
 	@Column(name = "id_chien", nullable = false)
-	@JsonIgnore
 	private int idDog;
+
+	@Column(name = "id_titre", nullable = false)
+	private int idTitle;
 
 	@Column(name = "code")
 	private String title;
@@ -34,12 +35,18 @@ public class Title {
 
 	@Column(name = "date_obtention")
 	private String obtentionDate;
+	
+	@Column(name = "date_maj")
+	private Timestamp timestamp;
 
-	public int getId() { return id; }
-	public void setId(int id) { this.id = id; }
+	public long getId() { return id; }
+	public void setId(long id) { this.id = id; }
 
 	public int getIdDog() { return idDog; }
 	public void setIdDog(int idDog) { this.idDog = idDog; }
+
+	public int getIdTitle() {return idTitle;}
+	public void setIdTitle(int idTitle) {this.idTitle = idTitle;}
 
 	public String getTitle() { return title; }
 	public void setTitle(String title) { this.title = title; }
@@ -56,4 +63,24 @@ public class Title {
 	public String getObtentionDate() { return obtentionDate; }
 	public void setObtentionDate(String obtentionDate) { this.obtentionDate = obtentionDate; }
 
+	public Timestamp getTimestamp() { return timestamp; }
+	public void setTimestamp(Timestamp timestamp) { this.timestamp = timestamp; }
+
+	public Title withId(long id){ this.setId( id ); return this; }
+	public Title withIdTitle(int idTitle){ this.setIdTitle(idTitle); return this; }
+	public Title withTitle(String title){ this.setTitle(title); return this; }
+	public Title withName(String name){ this.setName(name); return this; }
+	public Title withType(String type){ this.setType(type); return this; }
+	public Title withCountry(String country){ this.setCountry(country); return this; }
+	public Title withObtentionDate(String obtentionDate){ this.setObtentionDate(obtentionDate); return this; }
+	public Title withIdDog(int idDog){ this.setIdDog(idDog); return this; }
+	public Title withTimestamp(Timestamp timestamp){ this.setTimestamp(timestamp); return this; }
+	
+	@Override
+	public String toString() {
+		return "Title [id=" + id + ", idDog=" + idDog + ", title=" + title + ", name=" + name + ", type=" + type
+				+ ", country=" + country + ", obtentionDate=" + obtentionDate + ", timestamp=" + timestamp + "]";
+	}
+	
+	
 }

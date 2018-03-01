@@ -11,14 +11,19 @@ import com.scc.onlinedogshow.config.ServiceConfig;
 import com.scc.onlinedogshow.model.Dog;
 import com.scc.onlinedogshow.model.Title;
 import com.scc.onlinedogshow.repository.DogRepository;
-import com.scc.onlinedogshow.template.Breed;
+import com.scc.onlinedogshow.template.BreedObject;
+import com.scc.onlinedogshow.template.BreederObject;
+import com.scc.onlinedogshow.template.OwnerObject;
+import com.scc.onlinedogshow.template.PedigreeObject;
 import com.scc.onlinedogshow.model.Breeder;
 import com.scc.onlinedogshow.model.Owner;
 import com.scc.onlinedogshow.model.Parent;
 import com.scc.onlinedogshow.model.Pedigree;
 import com.scc.onlinedogshow.template.ResponseObject;
 import com.scc.onlinedogshow.template.ResponseObjectList;
+import com.scc.onlinedogshow.template.TitleObject;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -134,9 +139,9 @@ public class DogService {
 	    }
     }
 
-    private Breed searchBreed (Dog _dog) {
+    private BreedObject searchBreed (Dog _dog) {
     	
-    	Breed _breed = new Breed();
+    	BreedObject _breed = new BreedObject();
     	
     	try  {
     		
@@ -198,18 +203,7 @@ public class DogService {
     		
     		_parent = parentService.getParentById(_id);
     		_info.put("name",buildName(_parent.getName(), _parent.getAffixe(), _parent.getOnSuffixe()));
-    		/*
-    		if (_parent.getAffixe() != null && !"".equals(_parent.getAffixe())) {
-    			if (_parent.getOnSuffixe().equals("O")) {
-    				_info.put("name", _parent.getName() + " " + _parent.getAffixe());
-    			} else {
-    				_info.put("name", _parent.getAffixe() + " " + _parent.getName());    				
-    			}
-    		} else {
-    			_info.put("name", _parent.getName());
-    		}
-    		*/
-    		
+
     	} catch (Exception e) {
     		
     	}
@@ -217,10 +211,10 @@ public class DogService {
     	return _info;
     }
     
-    private Breeder searchBreeder(int _id) {
+    private BreederObject searchBreeder(int _id) {
     	
     	Breeder _breeder = new Breeder();
-    	
+    	BreederObject _b = new BreederObject();
     	try {
     		_breeder = breederService.getBreederByIdDog( _id );
     		/*
@@ -232,20 +226,33 @@ public class DogService {
     			&& (_breeder.getRaisonSociale()!=null && !"".equals(_breeder.getRaisonSociale()) )) {
     			_breeder.setLastName(_breeder.getRaisonSociale());
     			_breeder.setFirstName("");
-    		} 
+    		}
+    		
+    		_b.withLastName(_breeder.getLastName())
+    		  .withFirstName(_breeder.getFirstName())
+    		;
     		
     	} catch (Exception e) {
     		
     	}
-    	return _breeder;
+    	return _b;
     }
 
-    private List<Owner> searchOwners(int _id) {
+    private List<OwnerObject> searchOwners(int _id) {
     	
-    	List<Owner> _owners = new ArrayList<Owner>();
+    	List<OwnerObject> _owners = new ArrayList<OwnerObject>();
     	
     	try {
-    		_owners = ownerService.getOwnerByIdDog( _id );
+    		
+    		Owner _owner = ownerService.getOwnerByIdDog( _id );
+			_owners.add((OwnerObject) new OwnerObject()
+				.withLastName(_owner.getLastName())
+				.withFirstName(_owner.getFirstName())
+				.withAddress(_owner.getAddress())
+				.withZipCode(_owner.getZipCode())
+				.withTown(_owner.getTown())
+				.withCountry(_owner.getCountry())
+			);	
     		
     	} catch (Exception e) {
     		
@@ -253,12 +260,20 @@ public class DogService {
     	return _owners;
     }
 
-    private List<Title> searchTitles(int _id) {
+    private List<TitleObject> searchTitles(int _id) {
     	
-    	List<Title> _titles = new ArrayList<Title>();
-    	
+    	List<TitleObject> _titles = new ArrayList<TitleObject>();
     	try {
-    		_titles = titleService.getTitlesByIdDog( _id );
+    		for (Title _title : titleService.getTitlesByIdDog( _id )) {
+    			_titles.add((TitleObject) new TitleObject()
+    				.withName(_title.getName())
+    				.withCountry(_title.getCountry())
+    				.withObtentionDate(_title.getObtentionDate())
+    				.withTitle(_title.getTitle())
+    				.withType(_title.getType())
+    			);
+    		}
+    			
     	} catch (Exception e) {
     		
     	}
@@ -266,12 +281,20 @@ public class DogService {
     	
     }
     
-    private List<Pedigree> searchPedigrees(int _id) {
+    private List<PedigreeObject> searchPedigrees(int _id) {
     	
-    	List<Pedigree> _pedigrees = new ArrayList<Pedigree>();
+    	List<PedigreeObject> _pedigrees = new ArrayList<PedigreeObject>();
     	
     	try {
-    		_pedigrees = pedigreeService.getPedigreesByIdDog( _id );
+    		for(Pedigree _pedigree : pedigreeService.getPedigreesByIdDog( _id )) {
+    			_pedigrees.add((PedigreeObject) new PedigreeObject()	
+    				.withNumber(_pedigree.getNumber())
+    				.withCountry(_pedigree.getCountry())
+    				.withType(_pedigree.getType())
+    				.withObtentionDate(_pedigree.getObtentionDate())
+    			);
+    		}
+    		
     	} catch (Exception e) {
     		
     	}
@@ -305,18 +328,6 @@ public class DogService {
 
     }
     
-    public void saveDog(Dog _dog){
-
-    }
-
-    public void updateDog(Dog _dog){
-
-    }
-
-    public void deleteDog(Dog _dog){
-
-    }
-
     private ResponseObjectList<ResponseObject> buildFallbackDogIdentifiant(String token){
     	
     	List<ResponseObject> list = new ArrayList<ResponseObject>(); 
@@ -325,5 +336,56 @@ public class DogService {
     	;
         return new ResponseObjectList<ResponseObject>(list.size(),list);
     }
+    
+    public void save(Dog syncDog, Long timestamp){
+      	 
+    	try {
+	    	Dog dog = dogRepository.findById(syncDog.getId());
+	    	if (dog == null) {
+	    		logger.debug("Dog id {} not found", syncDog.getId());
+	    		syncDog
+	    			.withTimestamp(new Timestamp(timestamp))
+	    		;	    		
+	    		dogRepository.save(syncDog);
+	    	} else {
+	    		logger.debug("save dog id {}, {}, {}", dog.getId(), dog.getTimestamp().getTime(), timestamp);
+	    		if (dog.getTimestamp().getTime() < timestamp) {
+		    		logger.debug("check queue OK ; call saving changes ");
+		    		dog
+		    			.withNom(syncDog.getNom())
+		    			.withSexe(syncDog.getSexe())
+		    			.withAffixe(syncDog.getAffixe())
+		    			.withSexe(syncDog.getSexe())
+		    		    .withDateNaissance(syncDog.getDateNaissance())
+		    		    .withPays(syncDog.getPays())
+		    			.withTatouage(syncDog.getTatouage())
+		    			.withTranspondeur(syncDog.getTranspondeur())
+		    		    .withCodeFci(syncDog.getCodeFci())
+		    			.withIdRace(syncDog.getIdRace())
+		    			.withIdVariete(syncDog.getIdVariete())
+		    			.withRace(syncDog.getRace())
+		    			.withVariete(syncDog.getVariete())
+		    			.withCouleur(syncDog.getCouleur())
+		    			.withIdEtalon(syncDog.getIdEtalon())
+		    			.withIdLice(syncDog.getIdLice())
+		    			.withTimestamp(new Timestamp(timestamp))
+		    		;
+		    		
+	    			dogRepository.save(dog);
+	    		} else
+		    		logger.debug("check queue KO : no changes saved");
 
+	    	}
+    	} finally {
+    		
+    	}
+    }    
+
+    public void deleteById(int idDog){
+    	try {
+    		dogRepository.deleteById(idDog);
+    	} finally {
+    		
+    	}
+    }
 }

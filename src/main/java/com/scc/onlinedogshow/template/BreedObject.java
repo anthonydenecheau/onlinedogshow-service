@@ -2,7 +2,7 @@ package com.scc.onlinedogshow.template;
 
 import java.util.Map;
 
-public class Breed {
+public class BreedObject {
 
 	private int id;
 	private String fciNumber;
