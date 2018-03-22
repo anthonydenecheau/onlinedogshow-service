@@ -233,6 +233,7 @@ public class DogService {
     		
     		_b.withLastName(_breeder.getLastName())
     		  .withFirstName(_breeder.getFirstName())
+    		  .withOnSuffixe(_breeder.getOnSuffixe())
     		;
     		
     	} catch (Exception e) {
