@@ -177,6 +177,9 @@ public class DogService {
     	
     	try {
     		
+    		if (_onSuffixe == null)
+    			_onSuffixe = "O";
+    		
     		if (_affixe != null && !"".equals(_affixe)) {
     			if (_onSuffixe.equals("O")) {
     				result = _name + " " + _affixe;
