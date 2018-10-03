@@ -109,6 +109,18 @@
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-sleuth-zipkin</artifactId>
     </dependency>
+
+	<!-- Test -->
+    <dependency>
+    	<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-test</artifactId>
+        <scope>test</scope>
+	</dependency> 
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <scope>test</scope>
+    </dependency>    
       
   </dependencies>
 
@@ -118,7 +130,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <start-class>com.scc.onlinedogshow.Application</start-class>
     <docker.image.name>anthonydenecheau/scc-onlinedogshow-service</docker.image.name>
-    <docker.image.tag>version1.0</docker.image.tag>
+	<docker.image.tag>${env.BUILD_NAME}</docker.image.tag>
   </properties>
 
   <build>
