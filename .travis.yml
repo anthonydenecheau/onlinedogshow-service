@@ -18,18 +18,20 @@ env:
   global:
   - secure: Wb4WWkQouLKTurayJ+PViSwr8kXeJXQoRPf2jOSJw6GYBVY+G6S+1mAYOEtS98GoLwfLCiEbg+gWzogu5cBleUqYczqwYZGrMh4iauIoF8qcaY/FcmFCNFySnjavQKTVBFK05kFTslwH1gZE0pCHRWSukJoas6ibLtjumO80xxQjak6hOjvIDOmtfkwXq0ioavZR5m1oavU8O/F3WtG6Zvsap2t8/CIso+RxnU1K9FC1RySRZQ4k/X92dcdkVpCav6xCVtuZYoDJ7cNH+/4cqrzsvyPS+3j8icAGRm05kKEEy0Dcq2t0xWTNW8xEN2isV15FVkxv8LVEOKhBB/zvQp4Krvmvq8N8g2JB9mO6rn7CDRwdi0X1LyxD9K6++RzM0q1eupBUzJLLSpLeweIWTjMG/NHcEqoR+t4zyVJ4nUexhexHqvPgDZinaJzJxsl04EUtt58gVXQ8Oc6u4FlprlVhTBmJTaFENAPZUoLrVZN4eeXfeDisxXcTzUgNHxYvkKzuMnH6lAwKTvvcElLT869W1ZDOs+VWU/uC0MUoLLl8mCNkwvBrqxNOYsUMc+Z8nupRDEUifK075WpgngrzCjFvJ3MdJAE1N8C3wfcdc0vZNuQfVzAIgQ7109YkX4psGUpk+xnTJriqmeskcYnqE+6zJbHJZ71kL2NgdcUYVAc=
   - secure: eEjOarnwg4Ve/HtcD4/LzGmYNF4E3AuXGyjAFrI8jhBBoiOmtciqLevzmKk/BvGZGOY7NzaR41UBZn0ogXchZoqpeolpm9MM8ew/NEp24HPQaiBscDV3W+xFbeslAsRCscTcURwaCX0Nlzj/OSj8UFmJf4qYaKithp5XSQSc+2+9D/GxsvkDWVmFd6Qvlgb82iyPaw0zFkByq7QCmP+vAP+zeG/JRgd9ie9x+qZrXZcQGkISU1z42POHVy+u+Fahqryabr/fEsa8GA6xZtAOS+VQkvyZtjqmATLRa5ydSSLLWAP/Jj60onvwxR0tCG9JAEFtqwkFTTjAj/U8B8BXhjJVDi3EnG09IInemzytY6Y8IPjtGhZNF/Y7t/JY/4RpUCFoCO6MFuDo66AxqqDrVba3wSFYohW/BSGdzDunws7HJ/VwG7rNUaYwoH/e/OPUJHhJfOEAZBykiIN/yoF2aG3BYp5rF0ZoFFc2pCt/1EGpfgC0yQVykeqVMg55M9Ol1TG2VZbM9zlz4L9567V3fFy5m9h1K2wdxlvP6FBeAqyQwn2HM9dyJwSFx+Fnj9hnAvx3PZHT+AOi5RBjeZR2rQ2qymrAZDKzHxZ6K3mXsWHTwE9KeFqED5UxwdBcdJuBnJU/n+B4Vq3jMiXi+9rgosiVg77CUp4iTbUQFF25BMY=
-  - secure: ms1ZlYXKEQ3cP0XQ4KKd4/6Q9ClIOmyGrR4u8uAU+bzmPZH2CUk3s6La44BEIxW3AgDaiR1ZsImFtkI4C6YGchNhD6AWfMGBKk5KHVmuP2V1L/pBTzdjiBrdGxX2XR4fhebo0wBIDymAeMNdLTGc1IRfF1TFFJTiWNgdODewkbSCHfZhGcdgDi1CE27dv2f4ihAMykmpM6a3xKep4fQYo30T13UAC74GjdlhOwYvf/uE3dHgnfgKqS0GJjbRGV+xHxamgUEG7+MAvbaf/gb2aoruCmkQcfxlzZjTGPGRYvI2kL18TsMiCLXmVNjCSQoo4TmehkXSdlu3oterZjTAi2pOKEPl97T4nwUKtN9JdXq+0eWBdkPZ5RYHW0MCL1y9ntdPuSgFwOD8M0+uSNF7r0L6MVJPsuckkh6AQzQrzw3P9EHv9njNfjM6I/kJ9wRawCdKaopLzkbo9XZuMneWF0e27rZUolmVwY+s1faXg2RqqClox3pcA61YM48utzFT2t9IvBc/x4wglMP2d0OXbtUOKWbtCeEVgx/V7yZmUlGlTSUjgux6I6kFwKDu24oBnrei6bePLyf49HaO7f42xmdJtn33jL5OBp2h45/YltbudfUG3f+zpMabIDUQ4mskVyp2aVDKCsWRq+MWY8Dag2syOwTtZe6/omKLRKWBJMg=
+  - secure: EyF+oraGqPoJm799aJmmj2wOdv1tXx6qV+t9vyG6CHbIUwB06Uc7C9rDIRVCAtY7AWuVJe0zNNXGaNrl94F2xa0jpO6hgLPsERADb8+Fw6x+ykiumcwbqT7QiB5iIUwSznog2EjyJcS5pjLzb+7Oo8iDG+IC9olJuRr7MTuZSfYtly777kocmJa9dqtcq0W0vYygBUmbZRIrMJ3aCk2vhidE4A1rGFWWRQdliXTfsYIjBA0rzaT9eeO3iUn6ffMnuJsFMsc3vUepWAtT4RO0b9xP4uhvhUDS2yPyH8ugZYa5f68SYcoDz2hSMwhEI8TBR41Iz4HlvgaprL6YIschJBvICXBujCUa0bUMxr5DzqGkHYGv+k04xs6WcG990m7OP8/+iwyr/+oM/HuV5abpLaJr2k+YeZE/DSqr4npeRSVbDEH58jMkdbA/KjYlrVcZS6zirsPxfJnicrjZ6ydFTeNO3WHrvpN9Mwi79SbKZ8M6Yfrzz9RnyHat0LvQHQAuFpxKR02jWmmkXDvBwQhFdkz9JZximjzturapC1Gve9tfNSiPuzljt/0GUd2YVE2vayMuVr7bPFy9tCc2TZ6lp0HvF0M/ozNZjZU/SYT3LvT5w+d0eTTR8lmaF7I/aeRWSSKoSD7SQf0jXOQHHZ2g4cxZ2CjXtkRj/JOLK6Zvm5E=
 before_install:
 - gem install travis -v 1.8.5 --no-rdoc --no-ri
 - export BUILD_NAME=scc-onlinedogshow-service-$TRAVIS_BRANCH-$(date -u "+%Y%m%d%H%M%S")-$TRAVIS_BUILD_NUMBER
 - wget https://archive.apache.org/dist/kafka/0.10.0.1/kafka_2.11-0.10.0.1.tgz -O kafka.tgz
 - mkdir -p kafka && tar xzf kafka.tgz -C kafka --strip-components 1
 - echo "auto.create.topics.enable=true" >> kafka/config/server.properties
-- nohup bash -c "cd kafka && bin/zookeeper-server-start.sh config/zookeeper.properties &"
+- nohup bash -c "cd kafka && bin/zookeeper-server-start.sh config/zookeeper.properties
+  &"
 - sleep 10
 - nohup bash -c "cd kafka && bin/kafka-server-start.sh config/server.properties &"
 - sleep 10
-- kafka/bin/kafka-topics.sh --zookeeper 127.0.0.1:2181 --create --topic kafka-test-topic --partitions 3 --replication-factor 1
+- kafka/bin/kafka-topics.sh --zookeeper 127.0.0.1:2181 --create --topic kafka-test-topic
+  --partitions 3 --replication-factor 1
 script:
 - sh scripts/travis/tag_build.sh
 - sh scripts/travis/build_services.sh
