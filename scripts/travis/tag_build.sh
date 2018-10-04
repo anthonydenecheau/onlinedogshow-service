@@ -1,6 +1,5 @@
 echo "Tagging build with $BUILD_NAME"
 export TARGET_URL="https://api.github.com/repos/anthonydenecheau/onlinedogshow-service/releases?access_token=$GITHUB_TOKEN"
-echo "TARGET_URL $TARGET_URL"
 
 body="{
   \"tag_name\": \"$BUILD_NAME\",
