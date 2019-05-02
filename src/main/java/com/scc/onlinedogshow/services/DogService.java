@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -75,7 +76,8 @@ public class DogService {
 
     }
 
-    @HystrixCommand(fallbackMethod = "buildFallbackDogIdentifiant",
+    @HystrixCommand(commandKey = "onlinedogshowservice",
+            fallbackMethod = "buildFallbackDogIdentifiant",
             threadPoolKey = "dogByIdentifiantThreadPool",
             threadPoolProperties =
                     {@HystrixProperty(name = "coreSize",value="30"),
@@ -98,39 +100,40 @@ public class DogService {
 	    	String regex = "^[0-9]{15}$";
 	    	List<Dog> list = new ArrayList<Dog>(); 
 	    	if (!token.matches(regex))
-	    		list = dogRepository.findByTatouage(token);
+	    		list = dogRepository.findByTatouageIgnoreCase(token);
 	    	else
 	    		list = dogRepository.findByTranspondeur(token);
 	    
 	    	List<ResponseObject> results = new ArrayList<ResponseObject>();
-	    	ResponseObject result = new ResponseObject();
-	    	for (Dog _dog : list) {
+	    	
+	    	results = list.stream()
+	            .map(_dog -> new ResponseObject()
+   	            .withId(_dog.getId() )
+   	    			.withGender( _dog.getSexe() )
+   	    			.withBirthDate( _dog.getDateNaissance() )
+   	    			.withBirthCountry( _dog.getPays() )
+   	    			.withPedigrees( searchPedigrees ( _dog.getId() ))
+   	    			.withTokens( searchTokens ( _dog.getTatouage(), _dog.getTranspondeur()))
+   	    			.withBreed( searchBreed(_dog))
+   	    			.withFather( ( _dog.getIdEtalon() == 0 ? null : searchParent( _dog.getIdEtalon()) ))
+   	    			.withMother( ( _dog.getIdLice() == 0 ? null : searchParent( _dog.getIdLice()) ))
+   	    			.withBreeder( searchBreeder ( _dog.getId() ))
+   	    			.withOwners( searchOwners ( _dog.getId() ))
+   	    			.withTitles( searchTitles ( _dog.getId() ))
+   	            .withNom( _dog.getNom() )
+   	            .withAffixe( _dog.getAffixe() )
+	            )
+	            .map(_dog-> {
+	               _dog.withName(
+	                  buildName (_dog.getNom(), _dog.getAffixe(), (_dog.getBreeder() == null ? "O" : _dog.getBreeder().getOnSuffixe()) )
+	               );
+	               return _dog;
+	               }
+	            )
+	            .collect(Collectors.toList())
+	            ;
 	    		
-	    		// Construction de la réponse
-	    		result.withId(_dog.getId() )
-	    			.withGender( _dog.getSexe() )
-	    			.withBirthDate( _dog.getDateNaissance() )
-	    			.withBirthCountry( _dog.getPays() )
-	    			.withPedigrees( searchPedigrees ( _dog.getId() ))
-	    			.withTokens( searchTokens ( _dog.getTatouage(), _dog.getTranspondeur()))
-	    			.withBreed( searchBreed(_dog))
-	    			.withFather( ( _dog.getIdEtalon() == 0 ? null : searchParent( _dog.getIdEtalon()) ))
-	    			.withMother( ( _dog.getIdLice() == 0 ? null : searchParent( _dog.getIdLice()) ))
-	    			.withBreeder( searchBreeder ( _dog.getId() ))
-	    			.withOwners( searchOwners ( _dog.getId() ))
-	    			.withTitles( searchTitles ( _dog.getId() ))
-	    		;
-	    		
-	    		// Lecture de l'éleveur pour afficher le nom complet du chien
-    			String _name = buildName (_dog.getNom()
-    					, _dog.getAffixe()
-    					, (result.getBreeder() == null ? "O" : result.getBreeder().getOnSuffixe())
-    			);
-	    		result.withName( _name );
-
-	    		results.add(result);
-	    	}
-	    	return new ResponseObjectList<ResponseObject>(results.size(),results);
+	    	   return new ResponseObjectList<ResponseObject>(results.size(),results);    
         }
 	    finally{
 	    	newSpan.tag("peer.service", "postgres");

@@ -12,7 +12,7 @@ import com.scc.onlinedogshow.model.Dog;
 public interface DogRepository extends CrudRepository<Dog,String>  {
 	
     public Dog findById(int id);
-    public List<Dog> findByTatouage(String toutage);
+    public List<Dog> findByTatouageIgnoreCase(String toutage);
     public List<Dog> findByTranspondeur(String transpondeur);
 
     @Transactional

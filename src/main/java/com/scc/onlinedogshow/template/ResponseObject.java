@@ -3,7 +3,7 @@ package com.scc.onlinedogshow.template;
 import java.util.List;
 import java.util.Map;
 
-import com.scc.onlinedogshow.model.Breeder;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class ResponseObject {
 
@@ -20,6 +20,12 @@ public class ResponseObject {
 	private BreederObject breeder;
 	private List<OwnerObject> owners;
 	private List<TitleObject> titles;
+	
+   @JsonIgnore
+   private String nom;
+
+   @JsonIgnore
+   private String affixe;
 	
 	public int getId() { return id; }
 	public void setId(int id) { this.id = id; }
@@ -60,6 +66,12 @@ public class ResponseObject {
 	public List<TitleObject> getTitles() { return titles; }
 	public void setTitles(List<TitleObject> titles) { this.titles = titles; }
 	
+   public String getNom() { return nom; }
+   public void setNom(String nom) { this.nom = nom; }
+
+   public String getAffixe() { return affixe; }
+   public void setAffixe(String affixe) { this.affixe = affixe; }
+	
 	public ResponseObject withId(int id){ this.setId( id ); return this; }
 	public ResponseObject withName(String name){ this.setName( name ); return this; }
 	public ResponseObject withGender(String gender){ this.setGender( gender ); return this; }
@@ -73,5 +85,7 @@ public class ResponseObject {
 	public ResponseObject withBreeder(BreederObject breeder){ this.setBreeder( breeder ); return this; }
 	public ResponseObject withOwners(List<OwnerObject> owner){ this.setOwners( owner ); return this; }
 	public ResponseObject withTitles(List<TitleObject> titles){ this.setTitles( titles ); return this; }
-
+   public ResponseObject withNom(String nom) { this.setNom(nom); return this; }
+   public ResponseObject withAffixe(String affixe) { this.setAffixe(affixe); return this; }
+	
 }
